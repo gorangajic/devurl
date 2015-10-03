@@ -1,0 +1,37 @@
+{
+  "name": "devurl",
+  "version": "0.0.1",
+  "description": "point your dev env app to the friendly url using node-proxy",
+  "author": {
+    "name": "Goran Gajic",
+    "email": "fero.null@gmail.com"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dev-tools",
+    "hostname",
+    "friendly-urls"
+  ],
+  "bin": {
+    "devurl": "./bin/devurl.js"
+  },
+  "bugs": {
+    "url": "https://github.com/gorangajic/devurl/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "axon": "^2.0.2",
+    "axon-rpc": "0.0.3",
+    "http-proxy": "^1.11.2",
+    "is-root": "^1.0.0",
+    "underscore": "^1.8.3"
+  },
+  "homepage": "https://github.com/gorangajic/devurl",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gorangajic/devurl.git"
+  },
+}
