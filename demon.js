@@ -4,8 +4,9 @@ var axon = require('axon');
 var httpProxy = require('http-proxy');
 var http = require('http');
 var _ = require('underscore');
+var os = require('os');
 var eol = 'win32' == os.platform() ? '\r\n' : '\n';
-
+var isRoot = require('is-root');
 var message = [
   "please run command as root",
   "so process can bind on the port 80",
@@ -67,7 +68,6 @@ Demon.prototype.initRpc = function() {
 };
 
 Demon.prototype.ping = function(ok) {
-  log('pong');
   ok(null, 'pong');
 };
 
@@ -76,8 +76,6 @@ Demon.prototype.add = function(host, url, callback) {
     url: url,
     added: Date.now()
   };
-
-  log('add', this.domains);
   this.addToHosts(host);
   this.refresh(callback);
 };
@@ -85,7 +83,6 @@ Demon.prototype.add = function(host, url, callback) {
 Demon.prototype.remove = function(host, callback) {
   this.domains[host] == undefined;
   delete this.domains[host];
-  log('remove', host);
   this.removeFromHosts(host);
   this.refresh(callback);
 };
