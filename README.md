@@ -22,10 +22,10 @@ example package.json
 
 ```json
   "scripts": {
-    "start-dev": "concurrent "npm run-script server" "npm run-script friendly-url",
-    "friendly-url": "devurl dev.newapp.com https://localhost:3000",
-    "server": "node server.js --port 3000"
-  }
+    "start-dev": "concurrent \"npm run-script server\" \"npm run-script friendly-url\"",
+    "friendly-url": "devurl dev.newapp.com http://localhost:3030",
+    "server": "PORT=3030 node server.js"
+  },
 ```
 
 
