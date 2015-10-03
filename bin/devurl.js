@@ -19,5 +19,5 @@ var url = process.argv[3];
 
 devurl.add(host, url);
 console.log("----");
-console.log('==> proxying request from %s to %s', url, 'http://' + host + '/');
+console.log('==> proxying request %s => %s', 'http://' + host + '/', url);
 console.log('----');
