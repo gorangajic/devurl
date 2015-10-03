@@ -1,0 +1,12 @@
+{
+  "name": "concurently-devurl-example",
+  "version": "1.0.0",
+  "scripts": {
+    "start-dev": "concurrent \"npm run-script server\" \"npm run-script friendly-url\"",
+    "friendly-url": "devurl dev.newapp.com http://localhost:3030",
+    "server": "PORT=3030 node server.js"
+  },
+  "dependencies": {
+    "concurrently": "^0.1.1"
+  }
+}
