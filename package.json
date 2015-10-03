@@ -1,6 +1,6 @@
 {
   "name": "devurl",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "point your dev env app to the friendly url using node-proxy",
   "author": {
     "name": "Goran Gajic",
