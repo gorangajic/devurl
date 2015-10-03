@@ -1,7 +1,7 @@
 {
   "name": "devurl",
   "version": "0.0.2",
-  "description": "point your dev env app to the friendly url using node-proxy",
+  "description": "convert your ugly urls dev urls from localhost:3000 to dev.myapp.com",
   "author": {
     "name": "Goran Gajic",
     "email": "fero.null@gmail.com"

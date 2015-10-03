@@ -1,6 +1,6 @@
 # devurl
-point your dev env app to the friendly url using node-proxy
 
+> convert your ugly urls dev urls from ```http://localhost:3000``` to ```http://dev.myapp.com```
 
 ```
 $ npm install -g devurl
@@ -12,7 +12,6 @@ if you are running devurl for the first time you need to start it using root, be
 ```
 sudo devurl dev.awesomesite.com https://localhost:3000
 ```
-
 
 
 ### usage examples
