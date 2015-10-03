@@ -1,6 +1,6 @@
 {
   "name": "devurl",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "convert your ugly urls dev urls from localhost:3000 to dev.myapp.com",
   "author": {
     "name": "Goran Gajic",
