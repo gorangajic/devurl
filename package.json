@@ -8,6 +8,7 @@
   },
   "main": "index.js",
   "scripts": {
+    "test": "eslint . && mocha",
     "postinstall": "./bin/devurl restart"
   },
   "keywords": [
@@ -35,6 +36,8 @@
     "url": "git://github.com/gorangajic/devurl.git"
   },
   "devDependencies": {
-    "eslint": "^1.6.0"
+    "chai": "^3.3.0",
+    "eslint": "^1.6.0",
+    "mocha": "^2.3.3"
   }
 }
