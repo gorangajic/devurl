@@ -1,0 +1,13 @@
+{
+  "env": {
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    "no-var": 0,
+    "quotes": 0,
+    "no-process-exit": 0,
+    "no-unused-expressions": 0,
+    "no-shadow": 0
+  }
+}
