@@ -1,5 +1,7 @@
-var Client = require('./client');
+"use strict";
 
+var Client = require('./lib/client');
+var controller = require('./lib/controller');
 var clients = {};
 
 exports.add = function(host, url) {
@@ -10,10 +12,21 @@ exports.add = function(host, url) {
   clients[host] = new Client(host, url);
 };
 
-
 exports.remove = function(host) {
-  if (client[hosts]) {
-    clients[hosts].remove();
-    delete clients[hosts];
+  if (clients[host]) {
+    clients[host].remove();
+    delete clients[host];
   }
+};
+
+exports.stop = function(callback) {
+  controller.stop(callback);
+};
+
+exports.start = function(callback) {
+  controller.start(callback);
+};
+
+exports.restart = function(callback) {
+  controller.restart(callback);
 };

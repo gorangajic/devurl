@@ -6,15 +6,29 @@
 $ npm install -g devurl
 ```
 
-if you are running devurl for the first time you need to start it using root, because devurl need privilege to listen on port 80 and change hosts file. After first run root demon will be started so next time you can run devurl without sudo
+before get started you need to start devurl proxy, it need to be done as a root because devurl need privilege to listen on port 80 and change hosts file.
 
+> currently it only works with local machine (see issue [#1](https://github.com/gorangajic/devurl/issues/1))
+
+### start devurl proxy demon
 
 ```
-sudo devurl dev.awesomesite.com https://localhost:3000
+sudo devurl start
 ```
 
+### stop devurl proxy demon
 
-### usage examples
+```
+devurl stop
+```
+
+### proxy app 
+
+```
+devurl dev.awesomesite.com http://localhost:3000
+```
+
+## usage examples
 
 #### with [concurrently](https://www.npmjs.com/package/concurrently)
 
@@ -52,5 +66,12 @@ example server.js
   }
 
 ```
+
+## facts
+
+* devurl proxy demon listen on port 80 only if there is active app running
+* if proxy demon is not active for more than 3 days it will die automaticly so you need to start it again
+
+
 
 

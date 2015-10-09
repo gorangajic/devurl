@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+var Demon = require('../lib/Demon');
+
+var hostsPaths = {
+  darwin:  "/private/etc/",
+  win32: "C:\\Windows\\System32\\drivers\\etc\\"
+};
+
+var path = (hostsPaths[process.platform] ||  "/etc/") + "hosts";
+var demon = new Demon({hostsPaths: hostsPaths})
+
+var timeout = 0;
+if (process.argv[2] == "wait") {
+  timeout = 2000;
+}
+
+setTimeout(function() {
+  demon.init();
+}, timeout);
+
+module.exports = demon;
