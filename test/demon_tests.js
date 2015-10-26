@@ -17,8 +17,13 @@ describe('Demon', function() {
 
   describe('#add', function() {
     beforeEach(function(done) {
-      demon = new Demon({hostsPath: tmpHosts});
+      demon = new Demon({hostsPath: tmpHosts, port: 5502, httpPort: 3035});
+      demon.init();
       fs.writeFile(tmpHosts, hostsContent, 'utf-8', done);
+    });
+
+    afterEach(function(done) {
+        demon.cleanup(done);
     });
 
     it('should add host', function() {
@@ -32,7 +37,7 @@ describe('Demon', function() {
     });
 
     it('should add host to hosts file', function(done) {
-      demon.addToHosts('dev.example.com', function(err) {
+      demon.q.push({add: 'dev.example.com'}, function(err) {
         if (err) { return done(err); }
         fs.readFile(tmpHosts, 'utf-8', function(err, content){
           if (err) { return done(err); }
@@ -45,7 +50,7 @@ describe('Demon', function() {
 
     it('should add 127.0.0.1 as host destination', function(done) {
 
-      demon.addToHosts('dev.example.com', function(err) {
+      demon.q.push({add: 'dev.example.com'}, function(err) {
         if (err) { return done(err); }
 
         fs.readFile(tmpHosts, 'utf-8', function(err, content){
@@ -67,16 +72,21 @@ describe('Demon', function() {
   describe('#removeFromHosts', function() {
 
     beforeEach(function(done) {
-      demon = new Demon({hostsPath: tmpHosts});
+      demon = new Demon({hostsPath: tmpHosts, port: 5502, httpPort: 3035});
+      demon.init();
       fs.writeFile(tmpHosts, hostsContent, 'utf-8', function() {
-        demon.addToHosts('dev.example.com', function(err) {
-          done(err);
+        demon.q.push({ remove: 'dev.example.com' }, function(err) {
+          demon.q.push({ remove: 'dev3.example.com' }, function(err) {
+            done(err);
+          });
         });
       });
     });
-
+    afterEach(function(done) {
+      demon.cleanup(done);
+    });
     it('should remove host name from the file', function(done) {
-      demon.removeFromHosts('dev.example.com', function(err){
+      demon.q.push({remove: 'dev.example.com'}, function(err){
         if(err) { return done(err); }
 
         fs.readFile(tmpHosts, 'utf-8', function(err, content) {
@@ -85,6 +95,24 @@ describe('Demon', function() {
           done();
         });
       });
+    });
+
+    it('should remove and add new host in the same time', function(done) {
+
+      var test = _.after(4, function(err) {
+        if (err) {
+          return done(err);
+        }
+        fs.readFile(tmpHosts, 'utf-8', function(err, content){
+          content.indexOf('dev1.example.com').should.be.not.equal(-1);
+          content.indexOf('dev.example.com').should.be.equal(-1);
+          done();
+        });
+      });
+      demon.q.push({remove: 'dev.example.com'}, test);
+      demon.q.push({remove: 'dev3.example.com'}, test);
+      demon.q.push({add:'dev1.example.com'}, test);
+      demon.q.push({add:'dev2.example.com'}, test);
     });
   });
 
