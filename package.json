@@ -8,7 +8,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "eslint . && NODE_ENV=test mocha",
+    "test": "eslint . && NODE_ENV=test mocha --exit",
     "postinstall": "./bin/devurl restart"
   },
   "keywords": [
@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "chai": "^3.3.0",
-    "eslint": "^1.6.0",
-    "mocha": "^2.3.3"
+    "eslint": "^7.2.0",
+    "mocha": "^8.0.1"
   }
 }
